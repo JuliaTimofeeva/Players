@@ -1,0 +1,22 @@
+<table matSort (matSortChange)="sortData($event)">
+  <tr>
+    <th mat-sort-header="number">Номер</th>
+    <th mat-sort-header="name">Имя</th>
+    <th mat-sort-header="points">Очки</th>
+  </tr>
+
+  <tr *ngFor="let player of sortedData">
+    <td>{{player.id}}</td>
+    <td>{{player.name}}</td>
+    <td>{{player.points}}</td>
+    <td>
+      <button (click)="addPoint(player)" mat-raised-button color="primary">+1</button>
+    </td>
+    <td>
+      <button (click)="removePoint(player)" mat-raised-button color="warn">-1</button>
+    </td>
+    <td>
+      <i class="fa fa-trash-o" (click)="deletePlayer(player)" aria-hidden="true"></i>
+    </td>
+  </tr>
+</table>
