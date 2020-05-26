@@ -5,7 +5,7 @@
     <th mat-sort-header="points">Очки</th>
   </tr>
 
-  <tr *ngFor="let player of sortedData">
+  <tr *ngFor="let player of (playersState | async)">
     <td>{{player.id}}</td>
     <td>{{player.name}}</td>
     <td>{{player.points}}</td>

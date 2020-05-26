@@ -1,5 +1,4 @@
-import {Action} from '@ngrx/store';
-import {AddPlayer, AddPoint, DeletePlayer, DeletePoint, PLAYER_ACTION, SortPlayers} from './players.action';
+import {AddPlayer, AddPoint, DeletePlayer, DeletePoint, PLAYER_ACTION} from './players.action';
 
 
 const initialState = {
@@ -15,7 +14,7 @@ const initialState = {
     }
   ]
 };
-export function playersReducer(state = initialState, action: AddPlayer | DeletePlayer | AddPoint | DeletePoint | SortPlayers) {
+export function playersReducer(state = initialState, action: AddPlayer | DeletePlayer | AddPoint | DeletePoint) {
   switch (action.type) {
     case PLAYER_ACTION.ADD_PLAYER:
       return {
@@ -32,9 +31,7 @@ export function playersReducer(state = initialState, action: AddPlayer | DeleteP
         ...state,
         players: [...state.players.map((player) => {
           const currentPoints = player.id === action.data.id ? player.points + 1 : player.points;
-          return Object.assign({}, player, {
-            points: currentPoints
-          });
+          return {...player, points: currentPoints};
         })]
       };
     case PLAYER_ACTION.DELETE_POINT:
@@ -42,15 +39,8 @@ export function playersReducer(state = initialState, action: AddPlayer | DeleteP
         ...state,
         players: [...state.players.map((player) => {
           const currentPoints = player.id === action.data.id && player.points > 0  ? player.points - 1 : player.points;
-          return Object.assign({}, player, {
-            points: currentPoints
-          });
+          return {...player, points: currentPoints};
         })]
-      };
-    case PLAYER_ACTION.SORT_PLAYERS:
-      return {
-        ...state,
-        players: [...action.data]
       };
     default:
       return state;

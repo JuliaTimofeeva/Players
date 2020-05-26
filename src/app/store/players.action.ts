@@ -5,7 +5,6 @@ export namespace PLAYER_ACTION {
   export const DELETE_PLAYER = 'DELETE_PLAYER';
   export const ADD_POINT = 'ADD_POINT';
   export const DELETE_POINT = 'DELETE_POINT';
-  export const SORT_PLAYERS = 'SORT_PLAYERS';
 }
 
 export class AddPlayer implements Action {
@@ -22,10 +21,5 @@ export class AddPoint implements Action {
 }
 export class DeletePoint implements Action {
   readonly type = PLAYER_ACTION.DELETE_POINT;
-  constructor(public data: any) {}
-}
-
-export class SortPlayers implements Action {
-  readonly type = PLAYER_ACTION.SORT_PLAYERS;
   constructor(public data: any) {}
 }
